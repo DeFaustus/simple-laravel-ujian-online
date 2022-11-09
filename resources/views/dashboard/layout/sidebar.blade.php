@@ -30,6 +30,14 @@
                                 </a>
                             </li>
                         @endcan
+                        @role('SISWA')
+                            <li class="nav-item">
+                                <a class="nav-link {{ Request::segment(2) == 'daftarsoal' ? 'active' : '' }}"
+                                    href="/dashboard/daftarsoal">
+                                    Soal
+                                </a>
+                            </li>
+                        @endrole
                     </ul>
                 </div>
             </nav>

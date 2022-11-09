@@ -45,6 +45,11 @@ class SoalController extends Controller
     }
     public function dataSoalShow(Soal $soal)
     {
+        if (auth()->user()->roles->pluck('name')[0] != 'ADMIN') {
+            if ($soal->id == null || Auth::user()->dataUser->id != $soal->data_user_id) {
+                abort(404);
+            }
+        }
         return view("dashboard.soal.tambahDatasoal", [
             'title'     =>  'Tambah Data Soal',
             'soal_id'   => $soal->id
@@ -56,7 +61,7 @@ class SoalController extends Controller
         $validated['kunci'] = $validated[$validated['kunci']];
         try {
             DataSoal::create($validated);
-            return redirect("dashboard/soal")->with("sukses", "Berhasil Tambah Soal");
+            return redirect("/dashboard/soal/lihatsoal/" . request('soal_id'))->with("sukses", "Berhasil Tambah Soal");
         } catch (\Throwable $e) {
             return redirect('dashboard/soal')->with("gagal", $e->getMessage());
         }
@@ -67,5 +72,11 @@ class SoalController extends Controller
             'title'     => 'Lihat Soal',
             'data'      => Soal::with(['dataSoals'])->where(['id' => $id])->paginate()
         ]);
+    }
+    public function hapusDataSoal(DataSoal $soal)
+    {
+        $id = $soal->soal_id;
+        $soal->delete();
+        return redirect("/dashboard/soal/lihatsoal/" . $id)->with("sukses", "Berhasil Hapus Soal");
     }
 }

@@ -7,7 +7,7 @@
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
-                <form action="/logout" method="post">
+                <form action="/logout" method="post" onclick="return confirm('Apakah Anda Yakin ?')">
                     @csrf
                     <button class="nav-link btn btn-danger type="submit">Sign out</button>
                 </form>

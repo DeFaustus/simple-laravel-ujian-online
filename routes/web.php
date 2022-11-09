@@ -3,8 +3,10 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MapelController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
+use App\Models\DataSoal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +35,10 @@ Route::group(['middleware'  => 'auth'], function () {
         Route::get('/dashboard/soal/tambahdatasoal/{soal}', 'dataSoalShow');
         Route::post('/tambahdatasoal', 'tambahDataSoalAction');
         Route::get('/dashboard/soal/lihatsoal/{id}', 'lihatSoal');
+        Route::delete('dashboard/lihatsoal/hapus/{soal}', 'hapusDataSoal');
+    });
+    Route::controller(SiswaController::class)->group(function () {
+        Route::get('dashboard/daftarsoal', 'index');
     });
     Route::controller(UserController::class)->group(function () {
         Route::get('dashboard/dataguru', 'indexGuru');

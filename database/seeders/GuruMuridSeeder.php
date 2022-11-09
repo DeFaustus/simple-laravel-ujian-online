@@ -31,10 +31,11 @@ class GuruMuridSeeder extends Seeder
 
         $siswa = User::create([
             'name'      =>  "Dani",
-            'email'     => "dani@guru.com",
+            'email'     => "dani@murid.com",
             'password'  => Hash::make(1234)
         ]);
         $siswa->dataUser()->create([
+            'kelas_id'  => 1,
             'nik'       => "34423",
             'nama'      => "dani",
             'no_telp'      => "292034",

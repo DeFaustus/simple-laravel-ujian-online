@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('layout_main.main')
 @section('konten')
     <div class="container col-3 mt-5">
         <form method="POST" action="/login">
