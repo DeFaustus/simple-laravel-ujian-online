@@ -7,6 +7,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SoalController;
 use App\Http\Controllers\UserController;
 use App\Models\DataSoal;
+use App\Models\Soal;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,8 @@ Route::group(['middleware'  => 'auth'], function () {
     });
     Route::controller(SiswaController::class)->group(function () {
         Route::get('dashboard/daftarsoal', 'index');
+        Route::get('dashboard/kerjakansoal/{soal}', 'kerjakanSoal');
+        Route::post('dashboard/jawab', 'jawab');
     });
     Route::controller(UserController::class)->group(function () {
         Route::get('dashboard/dataguru', 'indexGuru');

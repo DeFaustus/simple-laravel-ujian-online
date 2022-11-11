@@ -21,7 +21,7 @@ class SoalController extends Controller
     {
         return view("dashboard.soal.soalIndex", [
             'title' => 'Soal',
-            'data'  => Soal::with(['mapel', 'kelas', 'dataUser', 'dataSoals'])->get()
+            'data'  => Soal::all()
         ]);
     }
     public function tambahSoal()
@@ -45,7 +45,7 @@ class SoalController extends Controller
     }
     public function dataSoalShow(Soal $soal)
     {
-        if (auth()->user()->roles->pluck('name')[0] != 'ADMIN') {
+        if (Auth::user()->roles->pluck('name')[0] != 'ADMIN') {
             if ($soal->id == null || Auth::user()->dataUser->id != $soal->data_user_id) {
                 abort(404);
             }

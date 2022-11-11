@@ -25,4 +25,8 @@ class DataUser extends Model
     {
         return $this->hasMany(Soal::class);
     }
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class);
+    }
 }

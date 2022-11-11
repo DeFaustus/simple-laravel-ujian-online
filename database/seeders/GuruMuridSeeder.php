@@ -29,18 +29,32 @@ class GuruMuridSeeder extends Seeder
         ]);
         $guru->assignRole("GURU");
 
-        $siswa = User::create([
+        $siswaDani = User::create([
             'name'      =>  "Dani",
             'email'     => "dani@murid.com",
             'password'  => Hash::make(1234)
         ]);
-        $siswa->dataUser()->create([
+        $siswaDani->dataUser()->create([
             'kelas_id'  => 1,
             'nik'       => "34423",
             'nama'      => "dani",
             'no_telp'      => "292034",
             'foto'      => "292034.jpg",
         ]);
-        $siswa->assignRole("SISWA");
+        $siswaDani->assignRole("SISWA");
+
+        $siswaRoni = User::create([
+            'name'      =>  "Roni",
+            'email'     => "roni@murid.com",
+            'password'  => Hash::make(1234)
+        ]);
+        $siswaRoni->dataUser()->create([
+            'kelas_id'  => 2,
+            'nik'       => "34424",
+            'nama'      => "roni",
+            'no_telp'      => "292034",
+            'foto'      => "292034.jpg",
+        ]);
+        $siswaRoni->assignRole("SISWA");
     }
 }

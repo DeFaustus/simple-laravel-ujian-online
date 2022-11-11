@@ -5,17 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DataSoal extends Model
+class Nilai extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
-    protected $with = ['jawaban'];
     public function soal()
     {
         return $this->belongsTo(Soal::class);
     }
-    public function jawaban()
+    public function dataUser()
     {
-        return $this->hasOne(Jawaban::class);
+        return $this->belongsTo(DataUser::class);
     }
 }

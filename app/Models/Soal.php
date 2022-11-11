@@ -9,6 +9,7 @@ class Soal extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['mapel', 'dataUser', 'dataSoals', 'kelas'];
     public function dataSoals()
     {
         return $this->hasMany(DataSoal::class);
@@ -24,5 +25,9 @@ class Soal extends Model
     public function dataUser()
     {
         return $this->belongsTo(DataUser::class);
+    }
+    public function nilai()
+    {
+        return $this->hasOne(Nilai::class);
     }
 }
