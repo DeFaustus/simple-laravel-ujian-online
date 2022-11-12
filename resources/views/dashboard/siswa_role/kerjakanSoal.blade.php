@@ -5,10 +5,10 @@
             <div class="col-4">
                 <div class="card w-75">
                     <div class="card-body">
-                        <div class="row d-flex justify-content-center align-items-center text-center">
+                        <div class="row d-flex justify-content-center align-items-center text-center" id="daftar-soal">
                             {{-- @foreach ($soal->dataSoals as $value)
                                 <a href="#soalnomor{{ $loop->iteration }}"
-                                    class="col-3 p-2 m-2 {{ $value->jawaban->jawaban != null ? 'bg-primary' : 'bg-secondary' }} rounded text-white text-decoration-none"
+                                    class="col-3 p-2 m-2 @if (isset($value->jawaban->jawaban)) bg-primary @else bg-secondary @endif rounded text-white text-decoration-none"
                                     id="soalnomor{{ $loop->iteration }}">
                                     {{ $loop->iteration }}</a>
                             @endforeach --}}
@@ -29,7 +29,7 @@
                                         <input class="form-check-input" type="radio" name="soal{{ $item->id }}"
                                             id="{{ $item->id }}" value="{{ $item->pil_1 }}"
                                             onclick="check(this.value,this.id)"
-                                            {{ $item->jawaban->jawaban == $item->pil_1 ? 'checked' : '' }}>
+                                            @if (isset($item->jawaban->jawaban)) {{ $item->jawaban->jawaban == $item->pil_1 ? 'checked' : '' }} @endif>
                                         <label class="form-check-label" for="{{ $item->soal }}">
                                             {{ $item->pil_1 }}
                                         </label>
@@ -38,7 +38,7 @@
                                         <input class="form-check-input" type="radio" name="soal{{ $item->id }}"
                                             id="{{ $item->id }}" value="{{ $item->pil_2 }}"
                                             onclick="check(this.value,this.id)"
-                                            {{ $item->jawaban->jawaban == $item->pil_2 ? 'checked' : '' }}>
+                                            @if (isset($item->jawaban->jawaban)) {{ $item->jawaban->jawaban == $item->pil_2 ? 'checked' : '' }} @endif>
                                         <label class="form-check-label" for="{{ $item->soal }}">
                                             {{ $item->pil_2 }}
                                         </label>
@@ -47,7 +47,7 @@
                                         <input class="form-check-input" type="radio" name="soal{{ $item->id }}"
                                             id="{{ $item->id }}" value="{{ $item->pil_3 }}"
                                             onclick="check(this.value,this.id)"
-                                            {{ $item->jawaban->jawaban == $item->pil_3 ? 'checked' : '' }}>
+                                            @if (isset($item->jawaban->jawaban)) {{ $item->jawaban->jawaban == $item->pil_3 ? 'checked' : '' }} @endif>
                                         <label class="form-check-label" for="{{ $item->soal }}">
                                             {{ $item->pil_3 }}
                                         </label>
@@ -56,7 +56,7 @@
                                         <input class="form-check-input" type="radio" name="soal{{ $item->id }}"
                                             id="{{ $item->id }}" value="{{ $item->pil_4 }}"
                                             onchange="check(this.value,this.id)"
-                                            {{ $item->jawaban->jawaban == $item->pil_4 ? 'checked' : '' }}>
+                                            @if (isset($item->jawaban->jawaban)) {{ $item->jawaban->jawaban == $item->pil_4 ? 'checked' : '' }} @endif>
                                         <label class="form-check-label" for="{{ $item->soal }}">
                                             {{ $item->pil_4 }}
                                         </label>

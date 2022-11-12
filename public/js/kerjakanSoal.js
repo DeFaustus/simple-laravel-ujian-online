@@ -1,5 +1,27 @@
+const idSoal = document.querySelector("#id_soal").value;
+getDaftarSoal();
+function getDaftarSoal() {
+    fetch(`/dashboard/getdaftarsoal/${idSoal}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+    })
+        .then((res) => res.json())
+        .then((res) => {
+            tampilDataSoal(res);
+        });
+}
+function tampilDataSoal(res) {
+    let data = "";
+    const daftarSoal = document.querySelector("#daftar-soal");
+    res.data.map((item) => {
+        data += item;
+        daftarSoal.innerHTML = data;
+    });
+}
 function check(value, iDdataSoal) {
-    let idSoal = document.querySelector("#id_soal").value;
     const body = document.getElementsByTagName("body")[0];
     const token = document.head.querySelector(
         "[name=csrf-token][content]"
@@ -22,6 +44,7 @@ function check(value, iDdataSoal) {
         .then((res) => res.json())
         .then((res) => {
             body.classList.remove("pe-none");
+            getDaftarSoal();
         })
         .catch((e) => console.error(e));
 }

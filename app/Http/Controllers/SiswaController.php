@@ -21,12 +21,32 @@ class SiswaController extends Controller
             'data'  => Soal::where('kelas_id', Auth::user()->dataUser->kelas->id)->get()
         ]);
     }
+    public function getDaftarSoal(Soal $soal)
+    {
+        $resData = [];
+        $no = 0;
+        $arr = [];
+        foreach ($soal->dataSoals as $value) {
+            $no++;
+            if (isset($value->jawaban->jawaban)) {
+                $arr = ["<a href='#soalnomor" . $no . "' class='col-3 p-2 m-2 bg-primary rounded text-white text-decoration-none' id='soalnomor" . $no . "'> " . $no . "</a>"];
+            } else {
+                $arr = ["<a href='#soalnomor" . $no . "' class='col-3 p-2 m-2 bg-secondary rounded text-white text-decoration-none' id='soalnomor" . $no . "'> " . $no . "</a>"];
+            }
+
+            array_push($resData, $arr);
+        }
+        return response()->json([
+            'status'    => true,
+            'data'      => $resData
+        ], 200);
+    }
     public function kerjakanSoal(Soal $soal)
     {
-        // return $soal;
         if ($soal == null) {
             abort(404);
         }
+
         return view('dashboard.siswa_role.kerjakanSoal', [
             'title'     =>  $soal->nama,
             'soal'      => $soal,

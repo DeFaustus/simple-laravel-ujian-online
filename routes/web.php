@@ -40,6 +40,7 @@ Route::group(['middleware'  => 'auth'], function () {
     });
     Route::controller(SiswaController::class)->group(function () {
         Route::get('dashboard/daftarsoal', 'index');
+        Route::get('dashboard/getdaftarsoal/{soal}', 'getDaftarSoal');
         Route::get('dashboard/kerjakansoal/{soal}', 'kerjakanSoal');
         Route::post('dashboard/jawab', 'jawab');
     });
